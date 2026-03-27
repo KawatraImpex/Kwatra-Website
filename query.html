@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Kwatra Impex</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      margin-top: -50px;
+      position: relative;
+      z-index: 10;
+    }
+    .contact-info {
+      background: var(--primary-color);
+      color: var(--white);
+      padding: 4rem 3rem;
+    }
+    .contact-info h2 {
+      color: var(--white);
+      margin-bottom: 2rem;
+    }
+    .contact-info p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .contact-form {
+      padding: 4rem 3rem;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--secondary-color);
+    }
+    .form-control {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid #CBD5E1;
+      border-radius: 4px;
+      font-family: inherit;
+      color: var(--text-dark);
+      transition: var(--transition-fast);
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
+    }
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+    }
+    @media (max-width: 768px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body style="background-color: var(--bg-light);">
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="home.html" class="logo">Kwatra<span>Impex.</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="query.html" class="active">Contact Us</a></li>
+      </ul>
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header" style="background-color: var(--secondary-color);">
+    <div class="container text-center">
+      <h1 style="color: var(--white); font-size: 3.5rem; margin-bottom: 1rem;">Contact Us</h1>
+      <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Reach out to purchase our imported products in India or discuss export requirements.</p>
+    </div>
+  </div>
+
+  <section class="section-padding pt-0">
+    <div class="container">
+      <div class="contact-container fade-in-section">
+        
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p>We are always looking to expand our distribution network in India and fulfill international export demands.</p>
+          
+          <div style="margin-top: 3rem;">
+            <p><strong>HQ Address:</strong> India</p>
+            <p><strong>Email:</strong> info@kwatraimpex.com</p>
+            <p><strong>Phone:</strong> +1 800 123 4567</p>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <form id="queryForm" onsubmit="submitForm(event)">
+            <div class="form-group">
+              <label for="name">Name / Company</label>
+              <input type="text" id="name" class="form-control" required placeholder="John Doe">
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" class="form-control" required placeholder="john@company.com">
+            </div>
+            <div class="form-group">
+              <label for="intent">Reason for Inquiry</label>
+              <select id="intent" class="form-control" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="buy_india">Purchase imported items in India</option>
+                <option value="export">Discuss international exports</option>
+                <option value="other">General Query</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" class="form-control" required placeholder="Tell us how we can help..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+            <p id="formStatus" style="margin-top: 1rem; color: green; display: none;"></p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center">
+      <div class="footer-bottom">
+        &copy; 2026 Kwatra Impex. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Fake submit logic for static version
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      const status = document.getElementById('formStatus');
+      
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        e.target.reset();
+        status.textContent = 'Your message has been sent successfully. We will reach out soon.';
+        status.style.display = 'block';
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          status.style.display = 'none';
+        }, 5000);
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
