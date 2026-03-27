@@ -203,24 +203,20 @@ a {
   position: relative;
 }
 .dropdown-menu {
+  display: none;
   position: absolute;
   top: 100%;
   left: -20px;
   background-color: var(--white);
   min-width: 250px;
   box-shadow: var(--shadow-md);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(10px);
-  transition: all var(--transition-fast);
   border-radius: 4px;
   list-style: none;
   padding: 0.5rem 0;
+  z-index: 999;
 }
 .dropdown:hover .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+  display: block;
 }
 .dropdown-menu li {
   margin: 0;
