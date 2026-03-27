@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products - Kwatra Impex</title>
+  <title>Product Categories - Kwatra Impex</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,7 +14,13 @@
       <a href="index.html" class="logo">Kwatra<span>Impex.</span></a>
       <ul class="nav-links" id="nav-links">
         <li><a href="index.html">Home</a></li>
-        <li><a href="products.html" class="active">Products</a></li>
+        <li class="dropdown">
+          <a href="products.html" class="active">Categories &#x25BC;</a>
+          <ul class="dropdown-menu">
+            <li><a href="#imported-foods">Imported Foods</a></li>
+            <li><a href="#export-spices">Export Products (Spices)</a></li>
+          </ul>
+        </li>
         <li><a href="query.html">Contact Us</a></li>
       </ul>
       <div class="menu-toggle" id="mobile-menu">
@@ -28,40 +34,107 @@
   <!-- Page Header -->
   <div class="page-header" style="background-image: linear-gradient(rgba(0,59,115,0.8), rgba(0,59,115,0.8)), url('file:///C:/Users/PC/.gemini/antigravity/brain/562e439f-19c0-438f-a7d9-6d184a0c5306/hero_cargo_ship_1774605823099.png'); background-size: cover; background-position: center;">
     <div class="container text-center">
-      <h1 style="color: var(--white); font-size: 3.5rem; margin-bottom: 1rem;">Our Products</h1>
-      <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">High-quality imported goods available for the Indian market.</p>
+      <h1 style="color: var(--white); font-size: 3.5rem; margin-bottom: 1rem;">Our Categories</h1>
+      <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Premium imported foods for India, and high-quality Indian spices for the world.</p>
     </div>
   </div>
 
-  <!-- Main Content -->
-  <section class="section-padding products-showcase">
+  <!-- Imported Foods Section -->
+  <section id="imported-foods" class="section-padding products-showcase">
     <div class="container">
-      <h2 class="section-title fade-in-section">Featured Imports</h2>
+      <h2 class="section-title fade-in-section">Imported Foods</h2>
+      <p style="text-align: center; color: rgba(255,255,255,0.8); margin-top: -1.5rem; margin-bottom: 3rem;">Carefully sourced international products brought directly to the Indian market.</p>
       
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; max-width: 900px; margin-left: auto; margin-right: auto;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
         
-        <!-- Product 1 -->
+        <!-- Imported Item 1 -->
         <div class="product-item fade-in-section">
-          <img src="images/40162949_1-indomie-instant-noodle-chicken-flavour.webp" alt="Indomie Instant Noodles" style="background-color: white; object-fit: contain; padding: 1rem;">
+          <img src="images/40162949_1-indomie-instant-noodle-chicken-flavour.webp" alt="Indomie Instant Noodles" style="background-color: white; object-fit: contain; padding: 1.5rem;">
           <div class="product-overlay">
             <div>
-              <h3>Imported Premium Noodles</h3>
-              <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">Indomie Chicken Flavour - High quality international food products imported directly for distribution.</p>
+              <h3>Indomie Instant Noodles</h3>
+              <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">Premium imported Chicken Flavour noodles, highly demanded in the domestic market.</p>
             </div>
           </div>
         </div>
 
-        <!-- Product 2 -->
+        <!-- Imported Item 2 -->
         <div class="product-item fade-in-section" style="transition-delay: 100ms;">
-          <img src="images/41j-K+MGc5S.jpg" alt="Imported Goods" style="background-color: white; object-fit: contain; padding: 1rem;">
+          <img src="images/41j-K+MGc5S.jpg" alt="Imported Goods" style="background-color: white; object-fit: contain; padding: 1.5rem;">
           <div class="product-overlay">
             <div>
               <h3>Global Consumables</h3>
-              <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">Carefully sourced international products brought to the Indian market.</p>
+              <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">High-quality packaged food ingredients imported for rapid distribution.</p>
             </div>
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- Export Products (Spices) Section -->
+  <section id="export-spices" class="section-padding" style="background-color: var(--bg-light);">
+    <div class="container">
+      <h2 class="section-title fade-in-section" style="color: var(--secondary-color);">Export Products (Spices)</h2>
+      <p style="text-align: center; color: var(--text-light); margin-top: -1.5rem; margin-bottom: 3rem;">Authentic, high-grade Indian spices harvested and packaged for international export.</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+        
+        <!-- Spice 1 -->
+        <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm);">
+          <img src="https://images.unsplash.com/photo-1620065099718-d7b38d01a9b1?w=600&q=80" alt="Black Pepper" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="product-overlay" style="padding: 1rem;">
+            <div>
+              <h3 style="font-size: 1.2rem;">Premium Black Pepper</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spice 2 -->
+        <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 100ms;">
+          <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&q=80" alt="Green Cardamom" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="product-overlay" style="padding: 1rem;">
+            <div>
+              <h3 style="font-size: 1.2rem;">Green Cardamom</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spice 3 -->
+        <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 200ms;">
+          <img src="https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?w=600&q=80" alt="Turmeric Powder" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="product-overlay" style="padding: 1rem;">
+            <div>
+              <h3 style="font-size: 1.2rem;">Organic Turmeric</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spice 4 -->
+        <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 300ms;">
+          <img src="https://images.unsplash.com/photo-1606834079813-f9aee607174e?w=600&q=80" alt="Cloves" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="product-overlay" style="padding: 1rem;">
+            <div>
+              <h3 style="font-size: 1.2rem;">Aromatic Cloves</h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spice 5 -->
+        <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 400ms;">
+          <img src="https://images.unsplash.com/photo-1599587440362-e95e92ac5f9c?w=600&q=80" alt="Cinnamon Sticks" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="product-overlay" style="padding: 1rem;">
+            <div>
+              <h3 style="font-size: 1.2rem;">Ceylon Cinnamon</h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="text-center" style="margin-top: 3rem; text-align: center;">
+        <a href="query.html" class="btn btn-outline">Request Bulk Quote</a>
       </div>
     </div>
   </section>
@@ -74,6 +147,25 @@
           <a href="#" class="logo" style="color: var(--white);">Kwatra<span style="color: var(--accent-color);">Impex.</span></a>
           <p>Your premier global trading enterprise, bridging international markets while serving as a leading domestic distributor in India.</p>
         </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Categories</a></li>
+            <li><a href="query.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Contact Us</h4>
+          <ul>
+            <li>Email: <a href="mailto:kawatraimpex@gmail.com">kawatraimpex@gmail.com</a></li>
+            <li>Phone: +91 9999496242, +91 7011601819</li>
+            <li>HQ: New Delhi, India</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Kwatra Impex. All rights reserved.
       </div>
     </div>
   </footer>
