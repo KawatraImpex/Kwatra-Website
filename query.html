@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,34 +19,41 @@
       position: relative;
       z-index: 10;
     }
+
     .contact-info {
       background: var(--primary-color);
       color: var(--white);
       padding: 4rem 3rem;
     }
+
     .contact-info h2 {
       color: var(--white);
       margin-bottom: 2rem;
     }
+
     .contact-info p {
-      color: rgba(255,255,255,0.8);
+      color: rgba(255, 255, 255, 0.8);
       margin-bottom: 1.5rem;
       display: flex;
       align-items: center;
       gap: 1rem;
     }
+
     .contact-form {
       padding: 4rem 3rem;
     }
+
     .form-group {
       margin-bottom: 1.5rem;
     }
+
     .form-group label {
       display: block;
       margin-bottom: 0.5rem;
       font-weight: 500;
       color: var(--secondary-color);
     }
+
     .form-control {
       width: 100%;
       padding: 0.8rem 1rem;
@@ -55,15 +63,18 @@
       color: var(--text-dark);
       transition: var(--transition-fast);
     }
+
     .form-control:focus {
       outline: none;
       border-color: var(--accent-color);
       box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.2);
     }
+
     textarea.form-control {
       resize: vertical;
       min-height: 120px;
     }
+
     @media (max-width: 768px) {
       .contact-container {
         grid-template-columns: 1fr;
@@ -71,6 +82,7 @@
     }
   </style>
 </head>
+
 <body style="background-color: var(--bg-light);">
 
   <!-- Navigation -->
@@ -94,23 +106,25 @@
   <div class="page-header" style="background-color: var(--secondary-color);">
     <div class="container text-center">
       <h1 style="color: var(--white); font-size: 3.5rem; margin-bottom: 1rem;">Contact Us</h1>
-      <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Reach out to purchase our imported products in India or discuss export requirements.</p>
+      <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Reach out to
+        purchase our imported products in India or discuss export requirements.</p>
     </div>
   </div>
 
   <section class="section-padding pt-0">
     <div class="container">
       <div class="contact-container fade-in-section">
-        
+
         <!-- Contact Information -->
         <div class="contact-info">
           <h2>Get in Touch</h2>
-          <p>We are always looking to expand our distribution network in India and fulfill international export demands.</p>
-          
+          <p>We are always looking to expand our distribution network in India and fulfill international export demands.
+          </p>
+
           <div style="margin-top: 3rem;">
-            <p><strong>HQ Address:</strong> India</p>
-            <p><strong>Email:</strong> info@kwatraimpex.com</p>
-            <p><strong>Phone:</strong> +1 800 123 4567</p>
+            <p><strong>HQ Address:</strong> New Delhi, India</p>
+            <p><strong>Email:</strong> <a href="mailto:kawatraimpex@gmail.com" style="color: var(--white);">kawatraimpex@gmail.com</a></p>
+            <p><strong>Phone:</strong> +91 9999496242, +91 7011601819</p>
           </div>
         </div>
 
@@ -163,17 +177,17 @@
       e.preventDefault();
       const btn = e.target.querySelector('button');
       const status = document.getElementById('formStatus');
-      
+
       btn.textContent = 'Sending...';
       btn.disabled = true;
-      
+
       setTimeout(() => {
         btn.textContent = 'Send Message';
         btn.disabled = false;
         e.target.reset();
         status.textContent = 'Your message has been sent successfully. We will reach out soon.';
         status.style.display = 'block';
-        
+
         // Hide success message after 5 seconds
         setTimeout(() => {
           status.style.display = 'none';
@@ -182,4 +196,5 @@
     }
   </script>
 </body>
+
 </html>
