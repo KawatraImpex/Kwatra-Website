@@ -1,5 +1,5 @@
 /* =========================================================================
-   Kwatra Impex - Interactive Scripts
+   Kawatra Impex - Interactive Scripts
    ========================================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {

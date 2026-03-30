@@ -20,5 +20,5 @@ __pycache__/
 Thumbs.db
 
 # Database
-kwatra.db
+Kawatra.db
 *.sqlite3
