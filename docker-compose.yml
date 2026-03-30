@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  kawatra-web:
+    build: .
+    container_name: kawatra-impex
+    ports:
+      - "80:80"
+    restart: always          # auto-restart on server reboot or crash
