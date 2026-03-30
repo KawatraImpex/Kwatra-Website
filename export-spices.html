@@ -51,6 +51,7 @@
           <div class="product-overlay" style="padding: 1rem;">
             <div>
               <h3 style="font-size: 1.2rem;">Cardamon</h3>
+              <button class="product-order-btn" onclick="openOrderModal('Cardamon')">📦 Order Query</button>
             </div>
           </div>
         </div>
@@ -61,36 +62,40 @@
           <div class="product-overlay" style="padding: 1rem;">
             <div>
               <h3 style="font-size: 1.2rem;">Mustard Seed</h3>
+              <button class="product-order-btn" onclick="openOrderModal('Mustard Seed')">📦 Order Query</button>
             </div>
           </div>
         </div>
 
         <!-- Spice 3 -->
         <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 200ms;">
-          <img src="images/black_pepper.png" alt="black_pepper" style="width: 100%; height: 100%; object-fit: cover;">
+          <img src="images/black_pepper.png" alt="Black Pepper" style="width: 100%; height: 100%; object-fit: cover;">
           <div class="product-overlay" style="padding: 1rem;">
             <div>
-              <h3 style="font-size: 1.2rem;">black_pepper</h3>
+              <h3 style="font-size: 1.2rem;">Black Pepper</h3>
+              <button class="product-order-btn" onclick="openOrderModal('Black Pepper')">📦 Order Query</button>
             </div>
           </div>
         </div>
 
         <!-- Spice 4 -->
         <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 300ms;">
-          <img src="images/cumin.png" alt="cumin" style="width: 100%; height: 100%; object-fit: cover;">
+          <img src="images/cumin.png" alt="Cumin" style="width: 100%; height: 100%; object-fit: cover;">
           <div class="product-overlay" style="padding: 1rem;">
             <div>
-              <h3 style="font-size: 1.2rem;">cumin</h3>
+              <h3 style="font-size: 1.2rem;">Cumin</h3>
+              <button class="product-order-btn" onclick="openOrderModal('Cumin')">📦 Order Query</button>
             </div>
           </div>
         </div>
 
         <!-- Spice 5 -->
         <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 400ms;">
-          <img src="images/turmeric.png" alt="turmeric" style="width: 100%; height: 100%; object-fit: cover;">
+          <img src="images/turmeric.png" alt="Turmeric" style="width: 100%; height: 100%; object-fit: cover;">
           <div class="product-overlay" style="padding: 1rem;">
             <div>
-              <h3 style="font-size: 1.2rem;">turmeric</h3>
+              <h3 style="font-size: 1.2rem;">Turmeric</h3>
+              <button class="product-order-btn" onclick="openOrderModal('Turmeric')">📦 Order Query</button>
             </div>
           </div>
         </div>
@@ -135,5 +140,67 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- ===== Order Query Modal ===== -->
+  <!-- SETUP: replace YOUR_FORMSPREE_ID with your Formspree form ID (free at formspree.io) -->
+  <div id="orderModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <h3 id="modalTitle">Order Query</h3>
+          <span class="modal-badge">Kawatra Impex</span>
+        </div>
+        <button class="modal-close" onclick="closeOrderModal()" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Success State -->
+        <div id="orderSuccess" class="modal-success">
+          <div class="success-icon">✅</div>
+          <h4>Query Received!</h4>
+          <p>Thank you! Our team at Kawatra Impex will contact you within 24 hours to discuss your order.</p>
+        </div>
+        <!-- Form -->
+        <form id="orderQueryForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <input type="hidden" name="_subject" value="New Order Query — Kawatra Impex">
+          <input type="hidden" id="orderProductName" name="product" value="">
+          <div class="modal-product-tag" id="modalProductName">📦 Product</div>
+          <div class="modal-form-row">
+            <div class="modal-form-group">
+              <label for="oq-name">Your Name *</label>
+              <input type="text" id="oq-name" name="name" class="modal-control" required placeholder="John Doe">
+            </div>
+            <div class="modal-form-group">
+              <label for="oq-company">Company (optional)</label>
+              <input type="text" id="oq-company" name="company" class="modal-control" placeholder="ABC Traders">
+            </div>
+          </div>
+          <div class="modal-form-row">
+            <div class="modal-form-group">
+              <label for="oq-phone">Contact Number *</label>
+              <input type="tel" id="oq-phone" name="phone" class="modal-control" required placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="modal-form-group">
+              <label for="oq-location">Location (City / Country) *</label>
+              <input type="text" id="oq-location" name="location" class="modal-control" required placeholder="Mumbai, India">
+            </div>
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-email">Email Address *</label>
+            <input type="email" id="oq-email" name="email" class="modal-control" required placeholder="you@company.com">
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-quantity">Quantity / Order Size</label>
+            <input type="text" id="oq-quantity" name="quantity" class="modal-control" placeholder="e.g. 500 kg / 10 tonnes">
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-message">Price Enquiry &amp; Additional Details</label>
+            <textarea id="oq-message" name="message" class="modal-control" placeholder="Ask about pricing, packaging, delivery terms, MOQ..."></textarea>
+          </div>
+          <button type="submit" class="modal-submit-btn">📨 Send Order Query</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

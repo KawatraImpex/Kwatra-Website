@@ -52,6 +52,7 @@
             <div>
               <h3>Indomie Instant Noodles</h3>
               <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">Premium imported Chicken Flavour noodles, highly demanded in the domestic market.</p>
+              <button class="product-order-btn" onclick="openOrderModal('Indomie Instant Noodles')">📦 Order Query</button>
             </div>
           </div>
         </div>
@@ -63,6 +64,7 @@
             <div>
               <h3>Global Consumables</h3>
               <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">High-quality packaged food ingredients imported for rapid distribution.</p>
+              <button class="product-order-btn" onclick="openOrderModal('Global Consumables')">📦 Order Query</button>
             </div>
           </div>
         </div>
@@ -107,5 +109,67 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- ===== Order Query Modal ===== -->
+  <!-- SETUP: replace YOUR_FORMSPREE_ID with your Formspree form ID (free at formspree.io) -->
+  <div id="orderModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <h3 id="modalTitle">Order Query</h3>
+          <span class="modal-badge">Kawatra Impex</span>
+        </div>
+        <button class="modal-close" onclick="closeOrderModal()" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Success State -->
+        <div id="orderSuccess" class="modal-success">
+          <div class="success-icon">✅</div>
+          <h4>Query Received!</h4>
+          <p>Thank you! Our team at Kawatra Impex will contact you within 24 hours to discuss your order.</p>
+        </div>
+        <!-- Form -->
+        <form id="orderQueryForm" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+          <input type="hidden" name="_subject" value="New Order Query — Kawatra Impex">
+          <input type="hidden" id="orderProductName" name="product" value="">
+          <div class="modal-product-tag" id="modalProductName">📦 Product</div>
+          <div class="modal-form-row">
+            <div class="modal-form-group">
+              <label for="oq-name">Your Name *</label>
+              <input type="text" id="oq-name" name="name" class="modal-control" required placeholder="John Doe">
+            </div>
+            <div class="modal-form-group">
+              <label for="oq-company">Company (optional)</label>
+              <input type="text" id="oq-company" name="company" class="modal-control" placeholder="ABC Traders">
+            </div>
+          </div>
+          <div class="modal-form-row">
+            <div class="modal-form-group">
+              <label for="oq-phone">Contact Number *</label>
+              <input type="tel" id="oq-phone" name="phone" class="modal-control" required placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="modal-form-group">
+              <label for="oq-location">Location (City / Country) *</label>
+              <input type="text" id="oq-location" name="location" class="modal-control" required placeholder="Mumbai, India">
+            </div>
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-email">Email Address *</label>
+            <input type="email" id="oq-email" name="email" class="modal-control" required placeholder="you@company.com">
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-quantity">Quantity / Order Size</label>
+            <input type="text" id="oq-quantity" name="quantity" class="modal-control" placeholder="e.g. 500 units / 2 tonnes">
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-message">Price Enquiry &amp; Additional Details</label>
+            <textarea id="oq-message" name="message" class="modal-control" placeholder="Ask about pricing, packaging, delivery terms, MOQ..."></textarea>
+          </div>
+          <button type="submit" class="modal-submit-btn">📨 Send Order Query</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

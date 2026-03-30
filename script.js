@@ -58,6 +58,82 @@ document.addEventListener('DOMContentLoaded', () => {
     // Grab all elements with .fade-in-section and observe them
     const fadeElements = document.querySelectorAll('.fade-in-section');
     fadeElements.forEach(el => sectionObserver.observe(el));
-  
+
+    /* --- Order Query Modal: close on overlay click & Escape key --- */
+    const orderModal = document.getElementById('orderModal');
+    if (orderModal) {
+      orderModal.addEventListener('click', (e) => {
+        if (e.target === orderModal) closeOrderModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && orderModal.classList.contains('is-open')) {
+          closeOrderModal();
+        }
+      });
+
+      /* Order Query Form Submission via Formspree AJAX */
+      const orderForm = document.getElementById('orderQueryForm');
+      if (orderForm) {
+        orderForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const btn = orderForm.querySelector('.modal-submit-btn');
+          btn.disabled = true;
+          btn.innerHTML = '⏳ Sending...';
+          try {
+            const response = await fetch(orderForm.action, {
+              method: 'POST',
+              body: new FormData(orderForm),
+              headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+              orderForm.style.display = 'none';
+              document.getElementById('orderSuccess').style.display = 'block';
+              setTimeout(closeOrderModal, 3500);
+            } else {
+              btn.disabled = false;
+              btn.innerHTML = '📨 Send Order Query';
+              alert('Submission failed. Please try again or email: kawatraimpex@gmail.com');
+            }
+          } catch {
+            btn.disabled = false;
+            btn.innerHTML = '📨 Send Order Query';
+            alert('Network error. Please email us at kawatraimpex@gmail.com');
+          }
+        });
+      }
+    }
+
   });
-  
+
+/* =========================================================================
+   Order Query Modal — Global Functions (called via onclick attributes)
+   ========================================================================= */
+function openOrderModal(productName) {
+  const overlay = document.getElementById('orderModal');
+  const tag     = document.getElementById('modalProductName');
+  const input   = document.getElementById('orderProductName');
+  const form    = document.getElementById('orderQueryForm');
+  const success = document.getElementById('orderSuccess');
+  if (!overlay) return;
+
+  if (tag)   tag.textContent = '📦 ' + productName;
+  if (input) input.value     = productName;
+
+  if (form) {
+    form.style.display = '';
+    form.reset();
+    if (input) input.value = productName; // restore after reset
+    const btn = form.querySelector('.modal-submit-btn');
+    if (btn) { btn.disabled = false; btn.innerHTML = '📨 Send Order Query'; }
+  }
+  if (success) success.style.display = 'none';
+
+  overlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOrderModal() {
+  const overlay = document.getElementById('orderModal');
+  if (overlay) overlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
