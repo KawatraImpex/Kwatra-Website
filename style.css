@@ -1003,3 +1003,65 @@ textarea.modal-control {
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
 }
+
+/* =========================================================================
+   Product Search Bar
+   ========================================================================= */
+.search-container {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  position: relative;
+}
+
+.search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1.5rem 1rem 3.5rem;
+  font-size: 1.1rem;
+  border: 2px solid #E2E8F0;
+  border-radius: 50px;
+  background-color: var(--white);
+  color: var(--secondary-color);
+  font-family: var(--font-main);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.1);
+  transform: translateY(-2px);
+}
+
+.search-icon {
+  position: absolute;
+  left: 1.25rem;
+  color: var(--text-light);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  display: none;
+  grid-column: 1 / -1;
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: var(--shadow-sm);
+}
+
+.no-results h3 {
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.no-results p {
+  color: var(--text-light);
+}

@@ -18,7 +18,7 @@
           <a href="javascript:void(0)" class="active">Categories &#x25BC;</a>
           <ul class="dropdown-menu">
             <li><a href="imported-foods.html">Imported Foods</a></li>
-            <li><a href="export-spices.html">Export Products (Spices)</a></li>
+            <li><a href="export-spices.html">Export Products</a></li>
           </ul>
         </li>
         <li><a href="query.html">Contact Us</a></li>
@@ -43,7 +43,22 @@
   <section id="imported-foods" class="section-padding products-showcase">
     <div class="container">
       
+      <!-- Product Search -->
+      <div class="search-container fade-in-section">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" placeholder="Search imported foods (e.g. Indomie, Noodles)...">
+        </div>
+      </div>
+      
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+        
+        <!-- No Results Message -->
+        <div class="no-results">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🔎</div>
+          <h3>No matching foods found</h3>
+          <p>We're constantly adding new items. Please contact us if you're looking for something specific!</p>
+        </div>
         
         <!-- Imported Item 1 -->
         <div class="product-item fade-in-section">

@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- Contact Pop-up (Delayed 10s) --- */
     initContactPopup();
 
+    /* --- Product Search Functionality --- */
+    initProductSearch();
+
     /* --- Order Query Modal: close on overlay click & Escape key --- */
     const orderModal = document.getElementById('orderModal');
     if (orderModal) {
@@ -248,4 +251,41 @@ function closeContactPopup() {
     document.body.style.overflow = '';
     sessionStorage.setItem('contactPopupDismissed', 'true');
   }
+}
+
+/* =========================================================================
+   Product Search Functionality
+   ========================================================================= */
+function initProductSearch() {
+  const searchInputs = document.querySelectorAll('.search-input');
+  
+  searchInputs.forEach(input => {
+    input.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const searchContainer = input.closest('.container');
+      const productGrid = searchContainer.querySelector('div[style*="grid"]');
+      const products = productGrid.querySelectorAll('.product-item');
+      const noResults = searchContainer.querySelector('.no-results');
+      
+      let matchCount = 0;
+      
+      products.forEach(product => {
+        const title = product.querySelector('h3').textContent.toLowerCase();
+        // Also check description if it exists (for imported foods)
+        const descriptionEl = product.querySelector('p');
+        const description = descriptionEl ? descriptionEl.textContent.toLowerCase() : '';
+        
+        if (title.includes(searchTerm) || description.includes(searchTerm)) {
+          product.style.display = '';
+          matchCount++;
+        } else {
+          product.style.display = 'none';
+        }
+      });
+      
+      if (noResults) {
+        noResults.style.display = matchCount === 0 ? 'grid' : 'none';
+      }
+    });
+  });
 }

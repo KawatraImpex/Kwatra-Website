@@ -18,7 +18,7 @@
           <a href="javascript:void(0)" class="active">Categories &#x25BC;</a>
           <ul class="dropdown-menu">
             <li><a href="imported-foods.html">Imported Foods</a></li>
-            <li><a href="export-spices.html">Export Products (Spices)</a></li>
+            <li><a href="export-spices.html" class="active">Export Products</a></li>
           </ul>
         </li>
         <li><a href="query.html">Contact Us</a></li>
@@ -34,17 +34,31 @@
   <!-- Page Header -->
   <div class="page-header" style="background-color: var(--secondary-color);">
     <div class="container text-center">
-      <h1 style="color: var(--white); font-size: 3.5rem; margin-bottom: 1rem;">Export Products (Spices)</h1>
+      <h1 style="color: var(--white); font-size: 3.5rem; margin-bottom: 1rem;">Export Products</h1>
       <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Authentic, high-grade Indian spices harvested and packaged for international export.</p>
     </div>
   </div>
 
-  <!-- Export Products (Spices) Section -->
+  <!-- Export Products Section -->
   <section id="export-spices" class="section-padding">
     <div class="container">
       
+      <!-- Product Search -->
+      <div class="search-container fade-in-section">
+        <div class="search-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" class="search-input" placeholder="Search export products (e.g. Cardamon, Rice)...">
+        </div>
+      </div>
+      
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
         
+        <!-- No Results Message -->
+        <div class="no-results">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">💼</div>
+          <h3>No matching products found</h3>
+          <p>We source many items beyond this list. Contact us for any wholesale export requirements!</p>
+        </div>
         <!-- Spice 1 -->
         <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm);">
           <img src="images/Cardamon.png" alt="Cardamon" style="width: 100%; height: 100%; object-fit: cover;">
