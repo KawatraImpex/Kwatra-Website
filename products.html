@@ -69,6 +69,7 @@
             <div>
               <h3>Indomie Instant Noodles</h3>
               <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">Premium imported Chicken Flavour noodles, highly demanded in the domestic market.</p>
+              <button class="product-order-btn" onclick="openOrderModal('Indomie Instant Noodles')">📦 Order Query</button>
             </div>
           </div>
         </div>
@@ -105,9 +106,10 @@
         <!-- Spice 1 -->
         <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm);">
           <img src="images/Cardamon.png" alt="Cardamon" style="width: 100%; height: 100%; object-fit: cover;">
-          <div class="product-overlay" style="padding: 1rem;">
+          <div class="product-overlay">
             <div>
               <h3 style="font-size: 1.2rem;">Cardamon</h3>
+              <button class="product-order-btn" onclick="openOrderModal('Cardamon')" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">📦 Order Query</button>
             </div>
           </div>
         </div>
@@ -132,12 +134,13 @@
           </div>
         </div>
 
-        <!-- Spice 4 -->
-        <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 300ms;">
-          <img src="images/cumin.png" alt="cumin" style="width: 100%; height: 100%; object-fit: cover;">
-          <div class="product-overlay" style="padding: 1rem;">
+        <!-- Spice 2 -->
+        <div class="product-item fade-in-section" style="height: 250px; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow-sm); transition-delay: 100ms;">
+          <img src="images/clove.png" alt="Clove" style="width: 100%; height: 100%; object-fit: cover;">
+          <div class="product-overlay">
             <div>
-              <h3 style="font-size: 1.2rem;">cumin</h3>
+              <h3 style="font-size: 1.2rem;">Clove</h3>
+              <button class="product-order-btn" onclick="openOrderModal('Clove')" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">📦 Order Query</button>
             </div>
           </div>
         </div>
@@ -159,6 +162,7 @@
             <div>
               <h3 style="font-size: 1.2rem;">Rice</h3>
               <p style="color: rgba(255,255,255,0.9); font-size: 0.85rem; margin-bottom: 0.5rem;">Basmati & Non-Basmati available</p>
+              <button class="product-order-btn" onclick="openOrderModal('Rice')" style="font-size: 0.8rem; padding: 0.4rem 0.8rem;">📦 Order Query</button>
             </div>
           </div>
         </div>
@@ -203,5 +207,66 @@
   </footer>
 
   <script src="script.js"></script>
+
+  <!-- ===== Order Query Modal ===== -->
+  <div id="orderModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-header-text">
+          <h3 id="modalTitle">Order Query</h3>
+          <span class="modal-badge">Kawatra Impex</span>
+        </div>
+        <button class="modal-close" onclick="closeOrderModal()" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Success State -->
+        <div id="orderSuccess" class="modal-success">
+          <div class="success-icon">✅</div>
+          <h4>Query Received!</h4>
+          <p>Thank you! Our team will contact you within 24 hours.</p>
+        </div>
+        <!-- Form -->
+        <form id="orderQueryForm" action="https://formsubmit.co/ajax/kawatraimpex@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Order Query — Kawatra Impex">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" id="orderProductName" name="product" value="">
+          <div class="modal-product-tag" id="modalProductName">📦 Product</div>
+          <div class="modal-form-row">
+            <div class="modal-form-group">
+              <label for="oq-name">Your Name *</label>
+              <input type="text" id="oq-name" name="name" class="modal-control" required placeholder="John Doe">
+            </div>
+            <div class="modal-form-group">
+              <label for="oq-company">Company (optional)</label>
+              <input type="text" id="oq-company" name="company" class="modal-control" placeholder="ABC Traders">
+            </div>
+          </div>
+          <div class="modal-form-row">
+            <div class="modal-form-group">
+              <label for="oq-phone">Contact Number *</label>
+              <input type="tel" id="oq-phone" name="phone" class="modal-control" required placeholder="+91 XXXXX XXXXX">
+            </div>
+            <div class="modal-form-group">
+              <label for="oq-location">Location (City / Country) *</label>
+              <input type="text" id="oq-location" name="location" class="modal-control" required placeholder="Mumbai, India">
+            </div>
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-email">Email Address *</label>
+            <input type="email" id="oq-email" name="email" class="modal-control" required placeholder="you@company.com">
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-quantity">Quantity / Order Size</label>
+            <input type="text" id="oq-quantity" name="quantity" class="modal-control" placeholder="e.g. 500 kg / 10 tonnes">
+          </div>
+          <div class="modal-form-group">
+            <label for="oq-message">Price Enquiry &amp; Details</label>
+            <textarea id="oq-message" name="message" class="modal-control" placeholder="Ask about pricing, packaging, MOQs..."></textarea>
+          </div>
+          <button type="submit" class="modal-submit-btn">📨 Send Order Query</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

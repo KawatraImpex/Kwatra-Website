@@ -89,6 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const formData = new FormData(orderForm);
             const data = Object.fromEntries(formData.entries());
             
+            console.log('Form data being sent:', data);
+
             const response = await fetch(orderForm.action, {
               method: 'POST',
               body: JSON.stringify(data),
@@ -97,17 +99,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Accept': 'application/json' 
               }
             });
+
+            // Parse response JSON for better debugging
+            const result = await response.json();
+            console.log('Server response:', result);
+
             if (response.ok) {
               orderForm.style.display = 'none';
               document.getElementById('orderSuccess').style.display = 'block';
               setTimeout(closeOrderModal, 3500);
             } else {
-              throw new Error('Submission failed');
+              throw new Error(result.message || 'Submission failed');
             }
-          } catch {
+          } catch (err) {
             btn.disabled = false;
             btn.innerHTML = '📨 Send Order Query';
-            alert('Submission failed. Please try again or email: kawatraimpex@gmail.com');
+            console.error('Detailed Submission Error:', err);
+            
+            if (err.name === 'TypeError') {
+               alert('Network Error: Please check your internet connection or browser security settings (CORS). You can also email us directly at kawatraimpex@gmail.com');
+            } else {
+               alert('Error: ' + err.message + '. Please try again or email us directly.');
+            }
           }
         });
       }

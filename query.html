@@ -210,6 +210,7 @@
       try {
         const formData = new FormData(this);
         const data = Object.fromEntries(formData.entries());
+        console.log('Contact form submission:', data);
 
         const response = await fetch(this.action, {
           method:  'POST',
@@ -220,6 +221,9 @@
           }
         });
 
+        const result = await response.json();
+        console.log('Server response:', result);
+
         if (response.ok) {
           this.reset();
           status.style.color   = '#16a34a';
@@ -227,13 +231,16 @@
           status.style.display = 'block';
           setTimeout(() => { status.style.display = 'none'; }, 6000);
         } else {
-          status.style.color   = '#dc2626';
-          status.textContent   = '❌ Something went wrong. Please email us directly at kawatraimpex@gmail.com';
-          status.style.display = 'block';
+          throw new Error(result.message || 'Submission failed');
         }
-      } catch {
+      } catch (err) {
+        console.error('Submission error:', err);
         status.style.color   = '#dc2626';
-        status.textContent   = '❌ Network error. Please email kawatraimpex@gmail.com directly.';
+        if (err.name === 'TypeError') {
+            status.textContent = '❌ Network Error: Please check your connection or email kawatraimpex@gmail.com directly.';
+        } else {
+            status.textContent = '❌ Error: ' + err.message + '. Please email us directly.';
+        }
         status.style.display = 'block';
       }
 
