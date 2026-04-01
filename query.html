@@ -145,7 +145,7 @@
         <div class="contact-form">
           <!-- Powered by Formsubmit.co — emails go directly to kawatraimpex@gmail.com -->
           <form id="queryForm"
-                action="https://formsubmit.co/ajax/kawatraimpex@gmail.com"
+                action="https://formsubmit.co/kawatraimpex@gmail.com"
                 method="POST">
             <input type="hidden" name="_subject" value="New Contact Query — Kawatra Impex">
             <input type="hidden" name="_captcha" value="false">
@@ -197,52 +197,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    /* Contact Form — FormSubmit AJAX submission with Fallback */
-    document.getElementById('queryForm').addEventListener('submit', async function(e) {
-      const isLocalFile = window.location.protocol === 'file:';
-      const btn    = document.getElementById('contactSubmitBtn');
-      const status = document.getElementById('formStatus');
-
-      if (!isLocalFile) {
-        e.preventDefault();
-        btn.textContent = 'Sending...';
-        btn.disabled    = true;
-
-        try {
-          const formData = new FormData(this);
-          const data = Object.fromEntries(formData.entries());
-
-          const response = await fetch(this.action, {
-            method:  'POST',
-            body:    JSON.stringify(data),
-            headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json' 
-            }
-          });
-
-          if (response.ok) {
-            this.reset();
-            status.style.color   = '#16a34a';
-            status.textContent   = '✅ Message sent! We will get back to you within 24 hours.';
-            status.style.display = 'block';
-            setTimeout(() => { status.style.display = 'none'; }, 6000);
-            btn.textContent = 'Send Message';
-            btn.disabled = false;
-            return;
-          }
-          throw new Error('AJAX fail');
-        } catch (err) {
-          console.warn('Form Fallback:', err);
-        }
-      }
-
-      // Standard Fallback for file:// or AJAX failure
-      this.action = this.action.replace('/ajax/', '/');
-      if (!isLocalFile) this.submit();
-    });
-  </script>
 </body>
 
 </html>

@@ -77,53 +77,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      /* Order Query Form Submission with AJAX + Browser Fallback */
+      /* Order Query Form - Natural Submission (standard HTML) */
       const orderForm = document.getElementById('orderQueryForm');
       if (orderForm) {
-        orderForm.addEventListener('submit', async (e) => {
-          const isLocalFile = window.location.protocol === 'file:';
-          const btn = orderForm.querySelector('.modal-submit-btn');
-
-          // If NOT on local file, attempt modern AJAX first
-          if (!isLocalFile) {
-            e.preventDefault();
-            btn.disabled = true;
-            btn.innerHTML = '⏳ Sending...';
-
-            try {
-              const formData = new FormData(orderForm);
-              const data = Object.fromEntries(formData.entries());
-              
-              const response = await fetch(orderForm.action, {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: { 
-                  'Content-Type': 'application/json',
-                  'Accept': 'application/json' 
-                }
-              });
-
-              if (response.ok) {
-                orderForm.style.display = 'none';
-                document.getElementById('orderSuccess').style.display = 'block';
-                setTimeout(closeOrderModal, 3500);
-                return; // Success!
-              }
-              throw new Error('AJAX failed');
-            } catch (err) {
-              console.warn('Submission Fallback Triggered:', err);
-            }
-          }
-
-          // FALLBACK / LOCAL FILE MODE: Standard Browser Submission
-          // Remove '/ajax/' from the URL for standard FormSubmit behavior
-          const standardAction = orderForm.action.replace('/ajax/', '/');
-          orderForm.action = standardAction;
-          
-          if (!isLocalFile) {
-            orderForm.submit(); // Manually trigger standard submit if we previously prevented it
-          }
-        });
+        // No event listener needed; browser handles the POST naturally
+        // We ensure the action is standard (not AJAX)
+        orderForm.action = orderForm.action.replace('/ajax/', '/');
       }
     }
 
@@ -178,7 +137,7 @@ function initContactPopup() {
           <p>Our team will reach out to you as soon as possible to discuss your requirements.</p>
         </div>
         <div class="contact-popup-body">
-          <form id="contactPopupForm" action="https://formsubmit.co/ajax/kawatraimpex@gmail.com" method="POST" class="contact-popup-form">
+          <form id="contactPopupForm" action="https://formsubmit.co/kawatraimpex@gmail.com" method="POST" class="contact-popup-form">
             <input type="hidden" name="_subject" value="New Website Lead — Kawatra Impex">
             <div class="form-group">
               <label for="popupName">Name / Company</label>
@@ -219,49 +178,10 @@ function initContactPopup() {
     }
   }, 2000);
 
-  // Form submission logic with Fallback
+  // Contact Popup Form - Natural Submission (standard HTML)
   const form = document.getElementById('contactPopupForm');
   if (form) {
-    form.addEventListener('submit', async (e) => {
-      const isLocalFile = window.location.protocol === 'file:';
-      const btn = document.getElementById('popupSubmitBtn');
-      const successDiv = document.getElementById('popupSuccess');
-      
-      if (!isLocalFile) {
-        e.preventDefault();
-        btn.disabled = true;
-        btn.textContent = 'Sending...';
-
-        try {
-          const formData = new FormData(form);
-          const data = Object.fromEntries(formData.entries());
-
-          const response = await fetch(form.action, {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json' 
-            }
-          });
-
-          if (response.ok) {
-            form.style.display = 'none';
-            successDiv.style.display = 'block';
-            sessionStorage.setItem('contactPopupDismissed', 'true');
-            setTimeout(closeContactPopup, 4000);
-            return;
-          }
-          throw new Error('AJAX fail');
-        } catch (err) {
-          console.warn('Popup Fallback:', err);
-        }
-      }
-
-      // Standard Fallback
-      form.action = form.action.replace('/ajax/', '/');
-      if (!isLocalFile) form.submit();
-    });
+    // Browser handles the POST naturally to formsubmit.co
   }
 
   // Handle overlay click to close
