@@ -153,9 +153,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /* --- Contact Pop-up (Delayed 10s) --- */
     initContactPopup();
 
-    /* --- Product Search Functionality --- */
-    initProductSearch();
-
     /* --- Order Query Modal: close on overlay click & Escape key --- */
     const orderModal = document.getElementById('orderModal');
     if (orderModal) {
@@ -304,71 +301,3 @@ function closeContactPopup() {
   }
 }
 
-/* =========================================================================
-   Product Search Functionality
-   ========================================================================= */
-function initProductSearch() {
-  const searchInput = document.querySelector('.nav-search input');
-  if (!searchInput) return;
-
-  // Real-time filtering
-  searchInput.addEventListener('input', (e) => {
-    const searchTerm = e.target.value.toLowerCase();
-    
-    // If we're on a product page, filter immediately
-    if (document.querySelector('.product-item')) {
-      performSearch(searchTerm);
-    }
-  });
-
-  // Handle Enter Key
-  searchInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      const searchTerm = searchInput.value.toLowerCase();
-      if (searchTerm) {
-        // If not on a products page, redirect to products.html with query
-        if (!document.querySelector('.product-item')) {
-          window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
-        } else {
-          performSearch(searchTerm);
-        }
-      }
-    }
-  });
-
-  // Check for query parameter on page load
-  const urlParams = new URLSearchParams(window.location.search);
-  const query = urlParams.get('search');
-  if (query) {
-    searchInput.value = query;
-    // Delay slightly to ensure DOM is ready and animations can trigger
-    setTimeout(() => performSearch(query.toLowerCase()), 300);
-  }
-}
-
-function performSearch(searchTerm) {
-  const products = document.querySelectorAll('.product-item');
-  const noResults = document.querySelector('.no-results');
-  let matchCount = 0;
-
-  products.forEach(product => {
-    const title = product.querySelector('h3').textContent.toLowerCase();
-    const descriptionEl = product.querySelector('p');
-    const description = descriptionEl ? descriptionEl.textContent.toLowerCase() : '';
-
-    if (title.includes(searchTerm) || description.includes(searchTerm)) {
-      product.style.display = '';
-      matchCount++;
-    } else {
-      product.style.display = 'none';
-    }
-  });
-
-  if (noResults) {
-    if (matchCount === 0 && searchTerm !== '') {
-      noResults.style.display = 'grid';
-    } else {
-      noResults.style.display = 'none';
-    }
-  }
-}
