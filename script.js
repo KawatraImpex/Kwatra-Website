@@ -86,24 +86,28 @@ document.addEventListener('DOMContentLoaded', () => {
           btn.disabled = true;
           btn.innerHTML = '⏳ Sending...';
           try {
+            const formData = new FormData(orderForm);
+            const data = Object.fromEntries(formData.entries());
+            
             const response = await fetch(orderForm.action, {
               method: 'POST',
-              body: new FormData(orderForm),
-              headers: { 'Accept': 'application/json' }
+              body: JSON.stringify(data),
+              headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json' 
+              }
             });
             if (response.ok) {
               orderForm.style.display = 'none';
               document.getElementById('orderSuccess').style.display = 'block';
               setTimeout(closeOrderModal, 3500);
             } else {
-              btn.disabled = false;
-              btn.innerHTML = '📨 Send Order Query';
-              alert('Submission failed. Please try again or email: kawatraimpex@gmail.com');
+              throw new Error('Submission failed');
             }
           } catch {
             btn.disabled = false;
             btn.innerHTML = '📨 Send Order Query';
-            alert('Network error. Please email us at kawatraimpex@gmail.com');
+            alert('Submission failed. Please try again or email: kawatraimpex@gmail.com');
           }
         });
       }
@@ -213,10 +217,16 @@ function initContactPopup() {
       btn.textContent = 'Sending...';
 
       try {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
         const response = await fetch(form.action, {
           method: 'POST',
-          body: new FormData(form),
-          headers: { 'Accept': 'application/json' }
+          body: JSON.stringify(data),
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json' 
+          }
         });
 
         if (response.ok) {
@@ -257,35 +267,67 @@ function closeContactPopup() {
    Product Search Functionality
    ========================================================================= */
 function initProductSearch() {
-  const searchInputs = document.querySelectorAll('.search-input');
-  
-  searchInputs.forEach(input => {
-    input.addEventListener('input', (e) => {
-      const searchTerm = e.target.value.toLowerCase();
-      const searchContainer = input.closest('.container');
-      const productGrid = searchContainer.querySelector('div[style*="grid"]');
-      const products = productGrid.querySelectorAll('.product-item');
-      const noResults = searchContainer.querySelector('.no-results');
-      
-      let matchCount = 0;
-      
-      products.forEach(product => {
-        const title = product.querySelector('h3').textContent.toLowerCase();
-        // Also check description if it exists (for imported foods)
-        const descriptionEl = product.querySelector('p');
-        const description = descriptionEl ? descriptionEl.textContent.toLowerCase() : '';
-        
-        if (title.includes(searchTerm) || description.includes(searchTerm)) {
-          product.style.display = '';
-          matchCount++;
-        } else {
-          product.style.display = 'none';
-        }
-      });
-      
-      if (noResults) {
-        noResults.style.display = matchCount === 0 ? 'grid' : 'none';
-      }
-    });
+  const searchInput = document.querySelector('.nav-search input');
+  if (!searchInput) return;
+
+  // Real-time filtering
+  searchInput.addEventListener('input', (e) => {
+    const searchTerm = e.target.value.toLowerCase();
+    
+    // If we're on a product page, filter immediately
+    if (document.querySelector('.product-item')) {
+      performSearch(searchTerm);
+    }
   });
+
+  // Handle Enter Key
+  searchInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      const searchTerm = searchInput.value.toLowerCase();
+      if (searchTerm) {
+        // If not on a products page, redirect to products.html with query
+        if (!document.querySelector('.product-item')) {
+          window.location.href = `products.html?search=${encodeURIComponent(searchTerm)}`;
+        } else {
+          performSearch(searchTerm);
+        }
+      }
+    }
+  });
+
+  // Check for query parameter on page load
+  const urlParams = new URLSearchParams(window.location.search);
+  const query = urlParams.get('search');
+  if (query) {
+    searchInput.value = query;
+    // Delay slightly to ensure DOM is ready and animations can trigger
+    setTimeout(() => performSearch(query.toLowerCase()), 300);
+  }
+}
+
+function performSearch(searchTerm) {
+  const products = document.querySelectorAll('.product-item');
+  const noResults = document.querySelector('.no-results');
+  let matchCount = 0;
+
+  products.forEach(product => {
+    const title = product.querySelector('h3').textContent.toLowerCase();
+    const descriptionEl = product.querySelector('p');
+    const description = descriptionEl ? descriptionEl.textContent.toLowerCase() : '';
+
+    if (title.includes(searchTerm) || description.includes(searchTerm)) {
+      product.style.display = '';
+      matchCount++;
+    } else {
+      product.style.display = 'none';
+    }
+  });
+
+  if (noResults) {
+    if (matchCount === 0 && searchTerm !== '') {
+      noResults.style.display = 'grid';
+    } else {
+      noResults.style.display = 'none';
+    }
+  }
 }

@@ -23,6 +23,13 @@
         </li>
         <li><a href="query.html">Contact Us</a></li>
       </ul>
+      
+      <!-- Modern Navbar Search -->
+      <div class="nav-search">
+        <input type="text" placeholder="Search products..." aria-label="Search">
+        <span class="search-btn-icon">🔍</span>
+      </div>
+
       <div class="menu-toggle" id="mobile-menu">
         <span></span>
         <span></span>
@@ -42,14 +49,6 @@
   <!-- Imported Foods Section -->
   <section id="imported-foods" class="section-padding products-showcase">
     <div class="container">
-      
-      <!-- Product Search -->
-      <div class="search-container fade-in-section">
-        <div class="search-wrapper">
-          <span class="search-icon">🔍</span>
-          <input type="text" class="search-input" placeholder="Search imported foods (e.g. Indomie, Noodles)...">
-        </div>
-      </div>
       
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
         
@@ -145,7 +144,8 @@
         </div>
         <!-- Form -->
         <form id="orderQueryForm" action="https://formsubmit.co/ajax/kawatraimpex@gmail.com" method="POST">
-          <input type="hidden" name="_subject" value="New Order Query — Kawatra Impex">`n          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_subject" value="New Order Query — Kawatra Impex">
+          <input type="hidden" name="_captcha" value="false">
           <input type="hidden" id="orderProductName" name="product" value="">
           <div class="modal-product-tag" id="modalProductName">📦 Product</div>
           <div class="modal-form-row">
