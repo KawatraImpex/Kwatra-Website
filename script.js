@@ -21,7 +21,7 @@ async function handleFormSubmission(event, formId, successId, formIdAttr) {
   }
 
   try {
-    const response = await fetch(`https://formspree.io/f/${formId}`, {
+    const response = await fetch(`https://formsubmit.co/ajax/${formId}`, {
       method: 'POST',
       body: formData,
       headers: {
@@ -239,7 +239,7 @@ function initContactPopup() {
             <button class="btn btn-outline" style="margin-top: 1.5rem; width: 100%;" onclick="closeContactPopup()">Close</button>
           </div>
 
-          <form id="contactPopupForm" onsubmit="handleFormSubmission(event, 'xojpldpy', 'popupSuccess', 'contactPopupForm')" class="contact-popup-form">
+          <form id="contactPopupForm" onsubmit="handleFormSubmission(event, 'kawatraimpex@gmail.com', 'popupSuccess', 'contactPopupForm')" class="contact-popup-form">
             <input type="hidden" name="_subject" value="New Website Lead — Kawatra Impex">
             <div class="form-group">
               <label for="popupName">Name / Company</label>
