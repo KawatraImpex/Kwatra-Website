@@ -137,7 +137,7 @@ function initContactPopup() {
           <p>Our team will reach out to you as soon as possible to discuss your requirements.</p>
         </div>
         <div class="contact-popup-body">
-          <form id="contactPopupForm" action="https://formspree.io/f/kawatraimpex@gmail.com" method="POST" class="contact-popup-form">
+          <form id="contactPopupForm" action="https://formspree.io/f/xojpldpy" method="POST" class="contact-popup-form">
             <input type="hidden" name="_subject" value="New Website Lead — Kawatra Impex">
             <div class="form-group">
               <label for="popupName">Name / Company</label>

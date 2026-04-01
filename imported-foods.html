@@ -127,6 +127,134 @@
   <!-- ===== Order Query Modal ===== -->
   <!-- Powered by Formsubmit.co � no account needed -->
   <div id="orderModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Imported Foods - Kawatra Impex</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Kawatra<span>Impex.</span></a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="active">Categories &#x25BC;</a>
+          <ul class="dropdown-menu">
+            <li><a href="imported-foods.html">Imported Foods</a></li>
+            <li><a href="export-spices.html">Export Products</a></li>
+          </ul>
+        </li>
+        <li><a href="query.html">Contact Us</a></li>
+      </ul>
+      
+      <!-- Modern Navbar Search -->
+      <div class="nav-search">
+        <input type="text" placeholder="Search products..." aria-label="Search">
+        <span class="search-btn-icon">🔍</span>
+      </div>
+
+      <div class="menu-toggle" id="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header" style="background-image: linear-gradient(rgba(0,59,115,0.8), rgba(0,59,115,0.8)), url('file:///C:/Users/PC/.gemini/antigravity/brain/562e439f-19c0-438f-a7d9-6d184a0c5306/hero_cargo_ship_1774605823099.png'); background-size: cover; background-position: center;">
+    <div class="container text-center">
+      <h1 style="color: var(--white); font-size: 3.5rem; margin-bottom: 1rem;">Imported Foods</h1>
+      <p style="color: rgba(255,255,255,0.8); font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Carefully sourced international products brought directly to the Indian market.</p>
+    </div>
+  </div>
+
+  <!-- Imported Foods Section -->
+  <section id="imported-foods" class="section-padding products-showcase">
+    <div class="container">
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto;">
+        
+        <!-- No Results Message -->
+        <div class="no-results">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🔎</div>
+          <h3>No matching foods found</h3>
+          <p>We're constantly adding new items. Please contact us if you're looking for something specific!</p>
+        </div>
+        
+        <!-- Imported Item 1 -->
+        <div class="product-item fade-in-section">
+          <img src="images/40162949_1-indomie-instant-noodle-chicken-flavour.webp" alt="Indomie Instant Noodles" style="background-color: white; object-fit: contain; padding: 1.5rem;">
+          <div class="product-overlay">
+            <div>
+              <h3>Indomie Instant Noodles</h3>
+              <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">Premium imported Chicken Flavour noodles, highly demanded in the domestic market.</p>
+              <button class="product-order-btn" onclick="openOrderModal('Indomie Instant Noodles')">📦 Order Query</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Imported Item 2 -->
+        <div class="product-item fade-in-section" style="transition-delay: 100ms;">
+          <img src="images/41j-K+MGc5S.jpg" alt="Imported Goods" style="background-color: white; object-fit: contain; padding: 1.5rem;">
+          <div class="product-overlay">
+            <div>
+              <h3>Global Consumables</h3>
+              <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem;">High-quality packaged food ingredients imported for rapid distribution.</p>
+              <button class="product-order-btn" onclick="openOrderModal('Global Consumables')">📦 Order Query</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <div class="text-center" style="margin-top: 3rem; text-align: center;">
+        <a href="query.html" class="btn btn-primary" style="background-color: var(--white); color: var(--primary-color);">Inquire About Imports</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="#" class="logo" style="color: var(--white);">Kawatra<span style="color: var(--accent-color);">Impex.</span></a>
+          <p>Your premier global trading enterprise, bridging international markets while serving as a leading domestic distributor in India.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Categories</a></li>
+            <li><a href="query.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Contact Us</h4>
+          <ul>
+            <li>Email: <a href="mailto:kawatraimpex@gmail.com">kawatraimpex@gmail.com</a></li>
+            <li>Phone: <a href="tel:+919999496242">+91 9999496242</a>, <a href="tel:+917011601819">+91 7011601819</a></li>
+            <li>HQ: New Delhi, India</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Kawatra Impex. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <!-- ===== Order Query Modal ===== -->
+  <div id="orderModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-card">
       <div class="modal-header">
         <div class="modal-header-text">
@@ -136,14 +264,8 @@
         <button class="modal-close" onclick="closeOrderModal()" aria-label="Close">&times;</button>
       </div>
       <div class="modal-body">
-        <!-- Success State -->
-        <div id="orderSuccess" class="modal-success">
-          <div class="success-icon">✅</div>
-          <h4>Query Received!</h4>
-          <p>Thank you! Our team at Kawatra Impex will contact you within 24 hours to discuss your order.</p>
-        </div>
         <!-- Form -->
-        <form id="orderQueryForm" action="https://formspree.io/f/kawatraimpex@gmail.com" method="POST">
+        <form id="orderQueryForm" action="https://formspree.io/f/xojpldpy" method="POST">
           <input type="hidden" name="_subject" value="New Order Query — Kawatra Impex">
           <input type="hidden" id="orderProductName" name="product" value="">
           <div class="modal-product-tag" id="modalProductName">📦 Product</div>
@@ -173,10 +295,10 @@
           </div>
           <div class="modal-form-group">
             <label for="oq-quantity">Quantity / Order Size</label>
-            <input type="text" id="oq-quantity" name="quantity" class="modal-control" placeholder="e.g. 500 units / 2 tonnes">
+            <input type="text" id="oq-quantity" name="quantity" class="modal-control" placeholder="e.g. 500 kg / 10 tonnes">
           </div>
           <div class="modal-form-group">
-            <label for="oq-message">Price Enquiry &amp; Additional Details</label>
+            <label for="oq-message">Price Enquiry &amp; Details</label>
             <textarea id="oq-message" name="message" class="modal-control" placeholder="Ask about pricing, packaging, MOQs..."></textarea>
           </div>
           <button type="submit" class="modal-submit-btn">📨 Submit via Formspree</button>
