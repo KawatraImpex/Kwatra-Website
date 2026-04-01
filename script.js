@@ -155,12 +155,12 @@ function initContactPopup() {
               <label for="popupMessage">Message (Optional)</label>
               <textarea id="popupMessage" name="message" class="contact-popup-input" placeholder="How can we help you?" style="min-height: 80px;"></textarea>
             </div>
-            <button type="submit" class="contact-popup-submit" id="popupSubmitBtn">Submit Details</button>
+            <button type="submit" class="contact-popup-submit" id="popupSubmitBtn">Submit via Formspree</button>
             
-            <!-- Direct Email Fallback -->
-            <p style="text-align: center; font-size: 0.75rem; margin-top: 1rem; color: #64748b;">
-              Facing issues? <a href="mailto:kawatraimpex@gmail.com" style="color: var(--primary-color); font-weight: 600;">Email us directly</a>
-            </p>
+            <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #e2e8f0;">
+              <p style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.5rem;">Form not working? Contact us directly:</p>
+              <a href="mailto:kawatraimpex@gmail.com?subject=Website Lead — Kawatra Impex" style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.85rem;">📧 Send via My Email App (Direct)</a>
+            </div>
           </form>
           <div class="contact-popup-success" id="popupSuccess">
             <span class="contact-popup-success-icon">✅</span>
