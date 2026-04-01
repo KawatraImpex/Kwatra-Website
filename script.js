@@ -137,36 +137,35 @@ function initContactPopup() {
           <p>Our team will reach out to you as soon as possible to discuss your requirements.</p>
         </div>
         <div class="contact-popup-body">
+          <!-- Success/Error Messages -->
+          <div data-fs-success style="display: none; padding: 1.5rem; text-align: center; color: #16a34a; font-weight: 600;">✅ Thank you! We will contact you soon.</div>
+          <div data-fs-error style="display: none; padding: 1rem; text-align: center; color: #dc2626; font-size: 0.8rem;">❌ Error. Please try again.</div>
+
           <form id="contactPopupForm" action="https://formspree.io/f/xojpldpy" method="POST" class="contact-popup-form">
             <input type="hidden" name="_subject" value="New Website Lead — Kawatra Impex">
             <div class="form-group">
               <label for="popupName">Name / Company</label>
-              <input type="text" id="popupName" name="name" class="contact-popup-input" placeholder="Enter your name" required>
+              <input type="text" id="popupName" name="name" class="contact-popup-input" placeholder="Enter your name" required data-fs-field>
             </div>
             <div class="form-group">
               <label for="popupEmail">Email Address</label>
-              <input type="email" id="popupEmail" name="email" class="contact-popup-input" placeholder="Enter your email" required>
+              <input type="email" id="popupEmail" name="email" class="contact-popup-input" placeholder="Enter your email" required data-fs-field>
             </div>
             <div class="form-group">
               <label for="popupPhone">Phone Number</label>
-              <input type="tel" id="popupPhone" name="phone" class="contact-popup-input" placeholder="e.g. +91 98765 43210" required>
+              <input type="tel" id="popupPhone" name="phone" class="contact-popup-input" placeholder="e.g. +91 98765 43210" required data-fs-field>
             </div>
             <div class="form-group">
               <label for="popupMessage">Message (Optional)</label>
-              <textarea id="popupMessage" name="message" class="contact-popup-input" placeholder="How can we help you?" style="min-height: 80px;"></textarea>
+              <textarea id="popupMessage" name="message" class="contact-popup-input" placeholder="How can we help you?" style="min-height: 80px;" data-fs-field></textarea>
             </div>
-            <button type="submit" class="contact-popup-submit" id="popupSubmitBtn">Submit via Formspree</button>
+            <button type="submit" class="contact-popup-submit" id="popupSubmitBtn" data-fs-submit-btn>Submit Details</button>
             
             <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #e2e8f0;">
               <p style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.5rem;">Form not working? Contact us directly:</p>
               <a href="mailto:kawatraimpex@gmail.com?subject=Website Lead — Kawatra Impex" style="color: var(--primary-color); font-weight: 600; text-decoration: none; font-size: 0.85rem;">📧 Send via My Email App (Direct)</a>
             </div>
           </form>
-          <div class="contact-popup-success" id="popupSuccess">
-            <span class="contact-popup-success-icon">✅</span>
-            <h4>Thank You!</h4>
-            <p>We've received your details. One of our experts will contact you shortly.</p>
-          </div>
         </div>
       </div>
     </div>
