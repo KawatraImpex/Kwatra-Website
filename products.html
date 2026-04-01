@@ -226,7 +226,7 @@
           <p>Thank you! Our team will contact you within 24 hours.</p>
         </div>
         <!-- Form -->
-        <form id="orderQueryForm" action="https://formsubmit.co/kawatraimpex@gmail.com" method="POST">
+        <form id="orderQueryForm" action="https://formspree.io/f/kawatraimpex@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="New Order Query — Kawatra Impex">
           <input type="hidden" id="orderProductName" name="product" value="">
           <div class="modal-product-tag" id="modalProductName">📦 Product</div>
@@ -263,6 +263,11 @@
             <textarea id="oq-message" name="message" class="modal-control" placeholder="Ask about pricing, packaging, MOQs..."></textarea>
           </div>
           <button type="submit" class="modal-submit-btn">📨 Send Order Query</button>
+          
+          <!-- Direct Email Fallback -->
+          <p style="text-align: center; font-size: 0.8rem; margin-top: 1rem; color: #64748b;">
+            Can't submit? <a href="mailto:kawatraimpex@gmail.com" style="color: var(--primary-color); font-weight: 600;">Email us directly</a>
+          </p>
         </form>
       </div>
     </div>

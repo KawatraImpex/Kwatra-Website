@@ -143,12 +143,10 @@
 
         <!-- Contact Form -->
         <div class="contact-form">
-          <!-- Powered by Formsubmit.co — emails go directly to kawatraimpex@gmail.com -->
           <form id="queryForm"
-                action="https://formsubmit.co/kawatraimpex@gmail.com"
+                action="https://formspree.io/f/kawatraimpex@gmail.com"
                 method="POST">
             <input type="hidden" name="_subject" value="New Contact Query — Kawatra Impex">
-            <input type="hidden" name="_captcha" value="false">
             <div class="form-group">
               <label for="name">Name / Company</label>
               <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
@@ -178,8 +176,13 @@
               <label for="message">Message</label>
               <textarea id="message" name="message" class="form-control" required placeholder="Tell us how we can help..."></textarea>
             </div>
-            <button type="submit" id="contactSubmitBtn" class="btn btn-primary" style="width: 100%;">Send Message</button>
-            <p id="formStatus" style="margin-top: 1rem; display: none;"></p>
+            <button type="submit" id="contactSubmitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem;">Send Message</button>
+            <p id="formStatus" style="display: none; margin-top: 1rem; text-align: center; font-weight: 600;"></p>
+
+            <!-- Direct Email Fallback -->
+            <p style="text-align: center; font-size: 0.85rem; margin-top: 1.5rem; color: #6b7280;">
+              Facing issues? <a href="mailto:kawatraimpex@gmail.com" style="color: var(--primary-color); font-weight: 600;">Email us directly</a>
+            </p>
           </form>
         </div>
 

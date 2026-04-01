@@ -137,7 +137,7 @@ function initContactPopup() {
           <p>Our team will reach out to you as soon as possible to discuss your requirements.</p>
         </div>
         <div class="contact-popup-body">
-          <form id="contactPopupForm" action="https://formsubmit.co/kawatraimpex@gmail.com" method="POST" class="contact-popup-form">
+          <form id="contactPopupForm" action="https://formspree.io/f/kawatraimpex@gmail.com" method="POST" class="contact-popup-form">
             <input type="hidden" name="_subject" value="New Website Lead — Kawatra Impex">
             <div class="form-group">
               <label for="popupName">Name / Company</label>
@@ -156,6 +156,11 @@ function initContactPopup() {
               <textarea id="popupMessage" name="message" class="contact-popup-input" placeholder="How can we help you?" style="min-height: 80px;"></textarea>
             </div>
             <button type="submit" class="contact-popup-submit" id="popupSubmitBtn">Submit Details</button>
+            
+            <!-- Direct Email Fallback -->
+            <p style="text-align: center; font-size: 0.75rem; margin-top: 1rem; color: #64748b;">
+              Facing issues? <a href="mailto:kawatraimpex@gmail.com" style="color: var(--primary-color); font-weight: 600;">Email us directly</a>
+            </p>
           </form>
           <div class="contact-popup-success" id="popupSuccess">
             <span class="contact-popup-success-icon">✅</span>
