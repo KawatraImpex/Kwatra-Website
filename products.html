@@ -402,12 +402,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <!-- Formspree AJAX Integration -->
-  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-  <script>
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#orderQueryForm', formId: 'xojpldpy' });
-  </script>
 
   <!-- ===== Order Query Modal ===== -->
   <div id="orderModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
@@ -420,55 +414,55 @@
         <button class="modal-close" onclick="closeOrderModal()" aria-label="Close">&times;</button>
       </div>
       <div class="modal-body">
-        <!-- Success/Error Messages -->
-        <div data-fs-success style="display: none; padding: 2rem; text-align: center;">
+        <!-- Success Animation (Hidden by default) -->
+        <div id="orderSuccess" class="modal-success-overlay" style="display: none; padding: 2rem; text-align: center;">
           <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
             <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
             <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
           </svg>
-          <h4 style="color: #16a34a; margin-top: 10px;">Submission Successful!</h4>
-          <p style="color: #64748b;">Our team at Kawatra Impex will contact you soon.</p>
+          <h4 style="color: #16a34a; margin-top: 15px; font-size: 1.5rem;">Submission Successful!</h4>
+          <p style="color: #64748b; font-size: 1.1rem; margin-top: 10px;">Our team at Kwatra Impex will contact you soon.</p>
+          <button class="btn btn-outline" style="margin-top: 2rem; width: 100%;" onclick="closeOrderModal()">Close</button>
         </div>
-        <div data-fs-error style="display: none; padding: 1rem; text-align: center; color: #dc2626; font-size: 0.9rem;">❌ There was an error. Please try again or use the email link.</div>
-        
+
         <!-- Form -->
-        <form id="orderQueryForm" action="https://formspree.io/f/xojpldpy" method="POST">
+        <form id="orderQueryForm" onsubmit="handleFormSubmission(event, 'xojpldpy', 'orderSuccess', 'orderQueryForm')">
           <input type="hidden" name="_subject" value="New Order Query — Kawatra Impex">
           <input type="hidden" id="orderProductName" name="product" value="">
           <div class="modal-product-tag" id="modalProductName">📦 Product</div>
           <div class="modal-form-row">
             <div class="modal-form-group">
               <label for="oq-name">Your Name *</label>
-              <input type="text" id="oq-name" name="name" class="modal-control" required placeholder="John Doe" data-fs-field>
+              <input type="text" id="oq-name" name="name" class="modal-control" required placeholder="John Doe">
             </div>
             <div class="modal-form-group">
               <label for="oq-company">Company (optional)</label>
-              <input type="text" id="oq-company" name="company" class="modal-control" placeholder="ABC Traders" data-fs-field>
+              <input type="text" id="oq-company" name="company" class="modal-control" placeholder="ABC Traders">
             </div>
           </div>
           <div class="modal-form-row">
             <div class="modal-form-group">
               <label for="oq-phone">Contact Number *</label>
-              <input type="tel" id="oq-phone" name="phone" class="modal-control" required placeholder="+91 XXXXX XXXXX" data-fs-field>
+              <input type="tel" id="oq-phone" name="phone" class="modal-control" required placeholder="+91 XXXXX XXXXX">
             </div>
             <div class="modal-form-group">
               <label for="oq-location">Location (City / Country) *</label>
-              <input type="text" id="oq-location" name="location" class="modal-control" required placeholder="Mumbai, India" data-fs-field>
+              <input type="text" id="oq-location" name="location" class="modal-control" required placeholder="Mumbai, India">
             </div>
           </div>
           <div class="modal-form-group">
             <label for="oq-email">Email Address *</label>
-            <input type="email" id="oq-email" name="email" class="modal-control" required placeholder="you@company.com" data-fs-field>
+            <input type="email" id="oq-email" name="email" class="modal-control" required placeholder="you@company.com">
           </div>
           <div class="modal-form-group">
             <label for="oq-quantity">Quantity / Order Size</label>
-            <input type="text" id="oq-quantity" name="quantity" class="modal-control" placeholder="e.g. 500 kg / 10 tonnes" data-fs-field>
+            <input type="text" id="oq-quantity" name="quantity" class="modal-control" placeholder="e.g. 500 kg / 10 tonnes">
           </div>
           <div class="modal-form-group">
             <label for="oq-message">Price Enquiry &amp; Details</label>
-            <textarea id="oq-message" name="message" class="modal-control" placeholder="Ask about pricing, packaging, MOQs..." data-fs-field></textarea>
+            <textarea id="oq-message" name="message" class="modal-control" placeholder="Ask about pricing, packaging, MOQs..."></textarea>
           </div>
-          <button type="submit" class="modal-submit-btn" data-fs-submit-btn>📨 Submit Inquiry</button>
+          <button type="submit" class="modal-submit-btn" id="orderSubmitBtn">📨 Submit Inquiry</button>
           
           <div style="text-align: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed #e2e8f0;">
             <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 0.8rem;">Form not working? Use the direct link below:</p>

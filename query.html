@@ -143,40 +143,37 @@
 
         <!-- Contact Form -->
         <div class="contact-form">
-          <!-- Success/Error Messages -->
-          <div data-fs-success style="display: none; padding: 2rem; text-align: center; background: #f0fdf4; border-radius: 8px; margin-bottom: 1.5rem;">
-            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+          <!-- Success Animation Overlay (Hidden by default) -->
+          <div id="contactSuccess" class="modal-success-overlay" style="display: none; padding: 2.5rem; text-align: center; background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" style="width: 80px; height: 80px; margin: 0 auto;">
               <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
               <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
             </svg>
-            <h4 style="color: #16a34a; margin-top: 10px;">Thank You!</h4>
-            <p style="color: #64748b;">Our team at Kawatra Impex will contact you soon.</p>
+            <h4 style="color: #16a34a; margin-top: 20px; font-size: 1.8rem;">Thank You!</h4>
+            <p style="color: #64748b; font-size: 1.1rem; margin-top: 10px;">Our team at Kwatra Impex will contact you soon.</p>
           </div>
-          <div data-fs-error style="display: none; padding: 1rem; text-align: center; color: #dc2626; font-size: 0.9rem; background: #fef2f2; border-radius: 8px; margin-bottom: 1.5rem;">❌ There was an error. Please try again or use the email link below.</div>
 
-          <form id="queryForm"
-                action="https://formspree.io/f/xojpldpy"
-                method="POST">
+          <form id="queryForm" onsubmit="handleFormSubmission(event, 'xojpldpy', 'contactSuccess', 'queryForm')">
             <input type="hidden" name="_subject" value="New Contact Query — Kawatra Impex">
             <div class="form-group">
               <label for="name">Name / Company</label>
-              <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe" data-fs-field>
+              <input type="text" id="name" name="name" class="form-control" required placeholder="John Doe">
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" class="form-control" required placeholder="john@company.com" data-fs-field>
+              <input type="email" id="email" name="email" class="form-control" required placeholder="john@company.com">
             </div>
             <div class="form-group">
               <label for="phone">Contact Number</label>
-              <input type="tel" id="phone" name="phone" class="form-control" placeholder="+91 XXXXX XXXXX" data-fs-field>
+              <input type="tel" id="phone" name="phone" class="form-control" placeholder="+91 XXXXX XXXXX">
             </div>
             <div class="form-group">
               <label for="location">Location (City / Country)</label>
-              <input type="text" id="location" name="location" class="form-control" placeholder="e.g. Mumbai, India" data-fs-field>
+              <input type="text" id="location" name="location" class="form-control" placeholder="e.g. Mumbai, India">
             </div>
             <div class="form-group">
               <label for="intent">Reason for Inquiry</label>
-              <select id="intent" name="intent" class="form-control" required data-fs-field>
+              <select id="intent" name="intent" class="form-control" required>
                 <option value="" disabled selected>Select an option</option>
                 <option value="buy_india">Purchase imported items in India</option>
                 <option value="export">Discuss international exports</option>
@@ -185,11 +182,10 @@
             </div>
             <div class="form-group">
               <label for="message">Message</label>
-              <textarea id="message" name="message" class="form-control" required placeholder="Tell us how we can help..." data-fs-field></textarea>
+              <textarea id="message" name="message" class="form-control" required placeholder="Tell us how we can help..."></textarea>
             </div>
-            <button type="submit" id="contactSubmitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem;" data-fs-submit-btn>Send Message</button>
-            <p id="formStatus" style="display: none; margin-top: 1rem; text-align: center; font-weight: 600;"></p>
-
+            <button type="submit" id="contactSubmitBtn" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem;">Send Message</button>
+            
             <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed #e2e8f0;">
               <p style="font-size: 0.9rem; color: #6b7280; margin-bottom: 1rem;">Facing issues with the form? Contact us directly:</p>
               <a href="mailto:kawatraimpex@gmail.com?subject=Contact Inquiry — Kawatra Impex" class="btn btn-outline" style="display: block; width: 100%; border-color: var(--primary-color); color: var(--primary-color); font-weight: 600; padding: 0.8rem;">📧 Send via My Email App (Direct)</a>
@@ -211,12 +207,6 @@
   </footer>
 
   <script src="script.js"></script>
-  <!-- Formspree AJAX Integration -->
-  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-  <script>
-    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-    formspree('initForm', { formElement: '#queryForm', formId: 'xojpldpy' });
-  </script>
 </body>
 
 </html>

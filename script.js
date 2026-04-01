@@ -2,6 +2,97 @@
    Kawatra Impex - Interactive Scripts
    ========================================================================= */
 
+/**
+ * Universal Form Submission Handler with Premium Animation 
+ * (Injected to global scope for HTML access)
+ */
+async function handleFormSubmission(event, formId, successId, formIdAttr) {
+  event.preventDefault();
+  const form = event.target;
+  const submitBtn = form.querySelector('button[type="submit"]');
+  const successOverlay = document.getElementById(successId);
+  const formData = new FormData(form);
+
+  // Disable button and show loading state
+  if (submitBtn) {
+    submitBtn.disabled = true;
+    submitBtn.dataset.originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = "⌛ Sending...";
+  }
+
+  try {
+    const response = await fetch(`https://formspree.io/f/${formId}`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      // Hide form and show success animation
+      form.style.display = 'none';
+      if (successOverlay) {
+        successOverlay.style.display = 'block';
+        // Auto-close after 5 seconds
+        setTimeout(() => {
+          if (formIdAttr === 'orderQueryForm') closeOrderModal();
+          if (formIdAttr === 'contactPopupForm') closeContactPopup();
+        }, 5000);
+      }
+    } else {
+      const data = await response.json();
+      alert("Oops! There was a problem: " + (data.errors ? data.errors.map(error => error.message).join(', ') : "Error submitting form."));
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = submitBtn.dataset.originalText || "📨 Submit";
+      }
+    }
+  } catch (error) {
+    alert("Network error. Please check your connection or use the direct email link.");
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = submitBtn.dataset.originalText || "📨 Submit";
+    }
+  }
+}
+
+/**
+ * Modal Logic
+ */
+function openOrderModal(productName) {
+  const modal = document.getElementById('orderModal');
+  const title = document.getElementById('modalTitle');
+  const productInput = document.getElementById('orderProductName');
+  const productTag = document.getElementById('modalProductName');
+  const form = document.getElementById('orderQueryForm');
+  const success = document.getElementById('orderSuccess');
+
+  if (modal) {
+    // Reset form and success state
+    if (form) form.style.display = 'block';
+    if (success) success.style.display = 'none';
+    
+    // Set product details
+    if (productName) {
+      if (title) title.textContent = "Order Inquiry";
+      if (productInput) productInput.value = productName;
+      if (productTag) productTag.textContent = `📦 Product: ${productName}`;
+    }
+
+    modal.classList.add('is-visible');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeOrderModal() {
+  const modal = document.getElementById('orderModal');
+  if (modal) {
+    modal.classList.remove('is-visible');
+    document.body.style.overflow = '';
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
     /* --- Mobile Navigation Toggle --- */
@@ -137,18 +228,18 @@ function initContactPopup() {
           <p>Our team will reach out to you as soon as possible to discuss your requirements.</p>
         </div>
         <div class="contact-popup-body">
-          <!-- Success/Error Messages -->
-          <div data-fs-success style="display: none; padding: 1.5rem; text-align: center;">
+          <!-- Success Animation Overlay -->
+          <div id="popupSuccess" class="modal-success-overlay" style="display: none; padding: 2rem; text-align: center;">
             <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
               <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
               <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
             </svg>
-            <h4 style="color: #16a34a; margin-top: 10px;">Submission Successful!</h4>
-            <p style="color: #64748b; font-size: 0.9rem;">Our team will contact you soon.</p>
+            <h4 style="color: #16a34a; margin-top: 15px;">Thank You!</h4>
+            <p style="color: #64748b; font-size: 1rem;">Our team will contact you soon.</p>
+            <button class="btn btn-outline" style="margin-top: 1.5rem; width: 100%;" onclick="closeContactPopup()">Close</button>
           </div>
-          <div data-fs-error style="display: none; padding: 1rem; text-align: center; color: #dc2626; font-size: 0.8rem;">❌ Error. Please try again.</div>
 
-          <form id="contactPopupForm" action="https://formspree.io/f/xojpldpy" method="POST" class="contact-popup-form">
+          <form id="contactPopupForm" onsubmit="handleFormSubmission(event, 'xojpldpy', 'popupSuccess', 'contactPopupForm')" class="contact-popup-form">
             <input type="hidden" name="_subject" value="New Website Lead — Kawatra Impex">
             <div class="form-group">
               <label for="popupName">Name / Company</label>
