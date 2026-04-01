@@ -77,50 +77,51 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      /* Order Query Form Submission via Formspree AJAX */
+      /* Order Query Form Submission with AJAX + Browser Fallback */
       const orderForm = document.getElementById('orderQueryForm');
       if (orderForm) {
         orderForm.addEventListener('submit', async (e) => {
-          e.preventDefault();
+          const isLocalFile = window.location.protocol === 'file:';
           const btn = orderForm.querySelector('.modal-submit-btn');
-          btn.disabled = true;
-          btn.innerHTML = '⏳ Sending...';
-          try {
-            const formData = new FormData(orderForm);
-            const data = Object.fromEntries(formData.entries());
-            
-            console.log('Form data being sent:', data);
 
-            const response = await fetch(orderForm.action, {
-              method: 'POST',
-              body: JSON.stringify(data),
-              headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json' 
+          // If NOT on local file, attempt modern AJAX first
+          if (!isLocalFile) {
+            e.preventDefault();
+            btn.disabled = true;
+            btn.innerHTML = '⏳ Sending...';
+
+            try {
+              const formData = new FormData(orderForm);
+              const data = Object.fromEntries(formData.entries());
+              
+              const response = await fetch(orderForm.action, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: { 
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json' 
+                }
+              });
+
+              if (response.ok) {
+                orderForm.style.display = 'none';
+                document.getElementById('orderSuccess').style.display = 'block';
+                setTimeout(closeOrderModal, 3500);
+                return; // Success!
               }
-            });
-
-            // Parse response JSON for better debugging
-            const result = await response.json();
-            console.log('Server response:', result);
-
-            if (response.ok) {
-              orderForm.style.display = 'none';
-              document.getElementById('orderSuccess').style.display = 'block';
-              setTimeout(closeOrderModal, 3500);
-            } else {
-              throw new Error(result.message || 'Submission failed');
+              throw new Error('AJAX failed');
+            } catch (err) {
+              console.warn('Submission Fallback Triggered:', err);
             }
-          } catch (err) {
-            btn.disabled = false;
-            btn.innerHTML = '📨 Send Order Query';
-            console.error('Detailed Submission Error:', err);
-            
-            if (err.name === 'TypeError') {
-               alert('Network Error: Please check your internet connection or browser security settings (CORS). You can also email us directly at kawatraimpex@gmail.com');
-            } else {
-               alert('Error: ' + err.message + '. Please try again or email us directly.');
-            }
+          }
+
+          // FALLBACK / LOCAL FILE MODE: Standard Browser Submission
+          // Remove '/ajax/' from the URL for standard FormSubmit behavior
+          const standardAction = orderForm.action.replace('/ajax/', '/');
+          orderForm.action = standardAction;
+          
+          if (!isLocalFile) {
+            orderForm.submit(); // Manually trigger standard submit if we previously prevented it
           }
         });
       }
@@ -218,43 +219,48 @@ function initContactPopup() {
     }
   }, 2000);
 
-  // Form submission logic
+  // Form submission logic with Fallback
   const form = document.getElementById('contactPopupForm');
   if (form) {
     form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+      const isLocalFile = window.location.protocol === 'file:';
       const btn = document.getElementById('popupSubmitBtn');
       const successDiv = document.getElementById('popupSuccess');
       
-      btn.disabled = true;
-      btn.textContent = 'Sending...';
+      if (!isLocalFile) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
 
-      try {
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
+        try {
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
 
-        const response = await fetch(form.action, {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json' 
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 
+              'Content-Type': 'application/json',
+              'Accept': 'application/json' 
+            }
+          });
+
+          if (response.ok) {
+            form.style.display = 'none';
+            successDiv.style.display = 'block';
+            sessionStorage.setItem('contactPopupDismissed', 'true');
+            setTimeout(closeContactPopup, 4000);
+            return;
           }
-        });
-
-        if (response.ok) {
-          form.style.display = 'none';
-          successDiv.style.display = 'block';
-          sessionStorage.setItem('contactPopupDismissed', 'true');
-          setTimeout(closeContactPopup, 4000);
-        } else {
-          throw new Error('Submission failed');
+          throw new Error('AJAX fail');
+        } catch (err) {
+          console.warn('Popup Fallback:', err);
         }
-      } catch (err) {
-        btn.disabled = false;
-        btn.textContent = 'Submit Details';
-        alert('Something went wrong. Please try again or email us: kawatraimpex@gmail.com');
       }
+
+      // Standard Fallback
+      form.action = form.action.replace('/ajax/', '/');
+      if (!isLocalFile) form.submit();
     });
   }
 
