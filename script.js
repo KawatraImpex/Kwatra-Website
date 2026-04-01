@@ -138,7 +138,14 @@ function initContactPopup() {
         </div>
         <div class="contact-popup-body">
           <!-- Success/Error Messages -->
-          <div data-fs-success style="display: none; padding: 1.5rem; text-align: center; color: #16a34a; font-weight: 600;">✅ Thank you! We will contact you soon.</div>
+          <div data-fs-success style="display: none; padding: 1.5rem; text-align: center;">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+              <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+              <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            <h4 style="color: #16a34a; margin-top: 10px;">Submission Successful!</h4>
+            <p style="color: #64748b; font-size: 0.9rem;">Our team will contact you soon.</p>
+          </div>
           <div data-fs-error style="display: none; padding: 1rem; text-align: center; color: #dc2626; font-size: 0.8rem;">❌ Error. Please try again.</div>
 
           <form id="contactPopupForm" action="https://formspree.io/f/xojpldpy" method="POST" class="contact-popup-form">
