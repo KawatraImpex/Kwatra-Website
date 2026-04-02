@@ -57,41 +57,7 @@ async function handleFormSubmission(event, formId, successId, formIdAttr) {
   }
 }
 
-/**
- * Modal Logic
- */
-function openOrderModal(productName) {
-  const modal = document.getElementById('orderModal');
-  const title = document.getElementById('modalTitle');
-  const productInput = document.getElementById('orderProductName');
-  const productTag = document.getElementById('modalProductName');
-  const form = document.getElementById('orderQueryForm');
-  const success = document.getElementById('orderSuccess');
 
-  if (modal) {
-    // Reset form and success state
-    if (form) form.style.display = 'block';
-    if (success) success.style.display = 'none';
-    
-    // Set product details
-    if (productName) {
-      if (title) title.textContent = "Order Inquiry";
-      if (productInput) productInput.value = productName;
-      if (productTag) productTag.textContent = `📦 Product: ${productName}`;
-    }
-
-    modal.classList.add('is-visible');
-    document.body.style.overflow = 'hidden';
-  }
-}
-
-function closeOrderModal() {
-  const modal = document.getElementById('orderModal');
-  if (modal) {
-    modal.classList.remove('is-visible');
-    document.body.style.overflow = '';
-  }
-}
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -165,13 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      /* Order Query Form - Natural Submission (standard HTML) */
-      const orderForm = document.getElementById('orderQueryForm');
-      if (orderForm) {
-        // No event listener needed; browser handles the POST naturally
-        // We ensure the action is standard (not AJAX)
-        orderForm.action = orderForm.action.replace('/ajax/', '/');
-      }
+      /* Order Query Form — handled via onsubmit AJAX handler (handleFormSubmission) */
     }
 
   });
