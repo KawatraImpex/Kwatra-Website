@@ -273,6 +273,7 @@ a {
   min-height: 600px;
   display: flex;
   align-items: center;
+  padding-top: 80px; /* Accounts for fixed navbar height */
   position: relative;
   background-color: var(--secondary-color);
   background-size: cover;
