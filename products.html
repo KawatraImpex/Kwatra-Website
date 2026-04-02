@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>Product Categories - Kawatra Impex</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -51,25 +52,25 @@
         
         <!-- Imported Item 1 -->
         <div class="product-item fade-in-section">
-          <img src="images/40162949_1-indomie-instant-noodle-chicken-flavour.webp" alt="Indomie Instant Noodles" style="background-color: white; object-fit: contain; padding: 1.5rem;">
-          <div class="product-overlay">
-            <div>
-              <h3>Indomie Instant Noodles</h3>
-              <p>Premium imported Chicken Flavour noodles, highly demanded in India.</p>
-              <button class="product-order-btn" onclick="openOrderModal('Indomie Instant Noodles')">📦 Order Query</button>
-            </div>
+          <div class="product-img-wrap" style="background-color: white;">
+            <img src="images/40162949_1-indomie-instant-noodle-chicken-flavour.webp" alt="Indomie Instant Noodles">
+          </div>
+          <div class="product-card-body">
+            <h3>Indomie Instant Noodles</h3>
+            <p>Premium imported Chicken Flavour noodles, highly demanded in India.</p>
+            <button class="product-order-btn" onclick="openOrderModal('Indomie Instant Noodles')">📦 Order Query</button>
           </div>
         </div>
 
         <!-- Imported Item 2 -->
         <div class="product-item fade-in-section" style="transition-delay: 100ms;">
-          <img src="images/41j-K+MGc5S.jpg" alt="Imported Goods" style="background-color: white; object-fit: contain; padding: 1.5rem;">
-          <div class="product-overlay">
-            <div>
-              <h3>Global Consumables</h3>
-              <p>High-quality packaged food ingredients imported for rapid distribution.</p>
-              <button class="product-order-btn" onclick="openOrderModal('Global Consumables')">📦 Order Query</button>
-            </div>
+          <div class="product-img-wrap" style="background-color: white;">
+            <img src="images/41j-K+MGc5S.jpg" alt="Global Consumables">
+          </div>
+          <div class="product-card-body">
+            <h3>Global Consumables</h3>
+            <p>High-quality packaged food ingredients imported for rapid distribution.</p>
+            <button class="product-order-btn" onclick="openOrderModal('Global Consumables')">📦 Order Query</button>
           </div>
         </div>
 
@@ -87,67 +88,73 @@
         
         <!-- Spice 1 -->
         <div class="product-item fade-in-section">
-          <img src="images/Cardamon.png" alt="Cardamon">
-          <div class="product-overlay">
-            <div>
-              <h3>Cardamon</h3>
-              <button class="product-order-btn" onclick="openOrderModal('Cardamon')">📦 Order Query</button>
-            </div>
+          <div class="product-img-wrap">
+            <img src="images/Cardamon.png" alt="Cardamon">
+          </div>
+          <div class="product-card-body">
+            <h3>Cardamon</h3>
+            <p>Premium Indian Cardamon pods, known for their intense aroma and flavor.</p>
+            <button class="product-order-btn" onclick="openOrderModal('Cardamon')">📦 Order Query</button>
           </div>
         </div>
 
         <!-- Spice 2 -->
         <div class="product-item fade-in-section" style="transition-delay: 100ms;">
-          <img src="images/Mustard Seed.png" alt="Mustard Seed">
-          <div class="product-overlay">
-            <div>
-              <h3>Mustard Seed</h3>
-              <button class="product-order-btn" onclick="openOrderModal('Mustard Seed')">📦 Order Query</button>
-            </div>
+          <div class="product-img-wrap">
+            <img src="images/Mustard Seed.png" alt="Mustard Seed">
+          </div>
+          <div class="product-card-body">
+            <h3>Mustard Seed</h3>
+            <p>High-quality mustard seeds sourced from the finest Indian farms.</p>
+            <button class="product-order-btn" onclick="openOrderModal('Mustard Seed')">📦 Order Query</button>
           </div>
         </div>
 
         <!-- Spice 3 -->
         <div class="product-item fade-in-section" style="transition-delay: 200ms;">
-          <img src="images/black_pepper.png" alt="Black Pepper">
-          <div class="product-overlay">
-            <div>
-              <h3>Black Pepper</h3>
-              <button class="product-order-btn" onclick="openOrderModal('Black Pepper')">📦 Order Query</button>
-            </div>
+          <div class="product-img-wrap">
+            <img src="images/black_pepper.png" alt="Black Pepper">
+          </div>
+          <div class="product-card-body">
+            <h3>Black Pepper</h3>
+            <p>The "King of Spices" — hand-picked black pepper for global export.</p>
+            <button class="product-order-btn" onclick="openOrderModal('Black Pepper')">📦 Order Query</button>
           </div>
         </div>
 
         <!-- Spice 4 -->
         <div class="product-item fade-in-section" style="transition-delay: 300ms;">
-          <img src="images/clove.png" alt="Clove">
-          <div class="product-overlay">
-            <div>
-              <h3>Clove</h3>
-              <button class="product-order-btn" onclick="openOrderModal('Clove')">📦 Order Query</button>
-            </div>
+          <div class="product-img-wrap">
+            <img src="images/clove.png" alt="Clove">
+          </div>
+          <div class="product-card-body">
+            <h3>Clove</h3>
+            <p>Rich, aromatic cloves handpicked from premium Indian plantations.</p>
+            <button class="product-order-btn" onclick="openOrderModal('Clove')">📦 Order Query</button>
           </div>
         </div>
 
         <!-- Spice 5 -->
         <div class="product-item fade-in-section" style="transition-delay: 400ms;">
-          <img src="images/turmeric.png" alt="Turmeric">
-          <div class="product-overlay">
-            <div>
-              <h3>Turmeric</h3>
-              <button class="product-order-btn" onclick="openOrderModal('Turmeric')">📦 Order Query</button>
-            </div>
+          <div class="product-img-wrap">
+            <img src="images/turmeric.png" alt="Turmeric">
+          </div>
+          <div class="product-card-body">
+            <h3>Turmeric</h3>
+            <p>High-curcumin turmeric powder and fingers for culinary and health use.</p>
+            <button class="product-order-btn" onclick="openOrderModal('Turmeric')">📦 Order Query</button>
           </div>
         </div>
 
         <!-- Spice 6 (Rice) -->
         <div class="product-item fade-in-section" style="transition-delay: 500ms;">
-          <img src="images/rice.png" alt="Rice">
-          <div class="product-overlay">
-            <div>
-              <h3>Basmati Rice</h3>
-              <button class="product-order-btn" onclick="openOrderModal('Rice')">📦 Order Query</button>
-            </div>
+          <div class="product-img-wrap">
+            <img src="images/rice.png" alt="Basmati Rice">
+          </div>
+          <div class="product-card-body">
+            <h3>Basmati Rice</h3>
+            <p>Aromatic long-grain Basmati and Non-Basmati rice varieties for global markets.</p>
+            <button class="product-order-btn" onclick="openOrderModal('Rice')">📦 Order Query</button>
           </div>
         </div>
 
