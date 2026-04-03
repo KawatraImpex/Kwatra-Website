@@ -1087,6 +1087,33 @@ textarea.modal-control {
   transform: translateY(-1px);
 }
 
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  margin-top: 0.5rem;
+  background: #25D366;
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-main);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.whatsapp-btn:hover {
+  background: #128C7E;
+  transform: translateY(-1px);
+  color: var(--white);
+}
+
 /* Responsive breakpoints */
 @media (max-width: 1100px) {
   .product-grid {
