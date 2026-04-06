@@ -134,6 +134,18 @@ document.addEventListener('DOMContentLoaded', () => {
       /* Order Query Form — handled via onsubmit AJAX handler (handleFormSubmission) */
     }
 
+    /* --- Handle URL Parameters (e.g., ?order=Rice) --- */
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderItem = urlParams.get('order');
+    if (orderItem) {
+      // Small delay to ensure any layout transitions are done
+      setTimeout(() => {
+        if (typeof openOrderModal === 'function') {
+          openOrderModal(orderItem);
+        }
+      }, 500);
+    }
+
   });
 
 /* =========================================================================

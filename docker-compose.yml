@@ -6,4 +6,4 @@ services:
     container_name: kawatra-impex
     ports:
       - "80:80"
-    restart: always          # auto-restart on server reboot or crash
+    restart: always # auto-restart on server reboot or crash
