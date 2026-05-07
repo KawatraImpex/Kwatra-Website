@@ -115,4 +115,62 @@ document.addEventListener('DOMContentLoaded', () => {
     // Grab all elements with .fade-in-section and observe them
     const fadeElements = document.querySelectorAll('.fade-in-section');
     fadeElements.forEach(el => sectionObserver.observe(el));
+    /* --- Order Query Modal: close on overlay click & Escape key --- */
+    const orderModal = document.getElementById('orderModal');
+    if (orderModal) {
+      orderModal.addEventListener('click', (e) => {
+        if (e.target === orderModal) closeOrderModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && orderModal.classList.contains('is-open')) {
+          closeOrderModal();
+        }
+      });
+    }
 
+    /* --- Handle URL Parameters (e.g., ?order=Rice) --- */
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderItem = urlParams.get('order');
+    if (orderItem) {
+      // Small delay to ensure any layout transitions are done
+      setTimeout(() => {
+        if (typeof openOrderModal === 'function') {
+          openOrderModal(orderItem);
+        }
+      }, 500);
+    }
+
+  });
+
+/* =========================================================================
+   Order Query Modal — Global Functions (called via onclick attributes)
+   ========================================================================= */
+function openOrderModal(productName) {
+  const overlay = document.getElementById('orderModal');
+  const tag     = document.getElementById('modalProductName');
+  const input   = document.getElementById('orderProductName');
+  const form    = document.getElementById('orderQueryForm');
+  const success = document.getElementById('orderSuccess');
+  if (!overlay) return;
+
+  if (tag)   tag.textContent = '📦 ' + productName;
+  if (input) input.value     = productName;
+
+  if (form) {
+    form.style.display = '';
+    form.reset();
+    if (input) input.value = productName; // restore after reset
+    const btn = form.querySelector('.modal-submit-btn');
+    if (btn) { btn.disabled = false; btn.innerHTML = '📨 Send Order Query'; }
+  }
+  if (success) success.style.display = 'none';
+
+  overlay.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeOrderModal() {
+  const overlay = document.getElementById('orderModal');
+  if (overlay) overlay.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
